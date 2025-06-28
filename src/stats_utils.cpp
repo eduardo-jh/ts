@@ -1,7 +1,8 @@
-#include "stats_utils.hpp"
+#include <iostream>
 #include <limits>
 #include <cmath>
-#include <iostream>
+
+#include "stats_utils.hpp"
 
 template <typename T>
 void compute_stats(const std::vector<T>& data,
@@ -30,6 +31,7 @@ void compute_stats(const std::vector<T>& data,
 
     size_t n = data.size();
     mean = sum / n;
+    // Welford's formula is a single pass algorithm
     stddev = std::sqrt((sum_sq / n) - (mean * mean));
 }
 

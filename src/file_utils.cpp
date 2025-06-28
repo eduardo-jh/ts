@@ -1,4 +1,13 @@
+#include <ctime>
+#include <regex>
+#include <iomanip>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
 #include "file_utils.hpp"
+
+namespace fs = std::filesystem;
 
 std::string convert_doy_date(const std::string& filename) {
     // This will look for the pattern "A2022007" in the file name 
@@ -29,7 +38,6 @@ std::string convert_doy_date(const std::string& filename) {
 fs::path find_first_valid_file(const std::string& root,
                                const std::string& extension,
                                const std::vector<std::string>& subdirs) {
-    namespace fs = std::filesystem;
 
     if (subdirs.empty()) {
         // Case: search in the root directory only
@@ -55,7 +63,6 @@ fs::path find_first_valid_file(const std::string& root,
     return fs::path();  // no file found
 }
 
-// EVEN NEWER FUNCTION, TESTING STILL
 void scan_directory_tree(const std::string& root,
                          const std::string& format,
                          const std::vector<std::string>& subdirs,
@@ -67,7 +74,7 @@ void scan_directory_tree(const std::string& root,
                          const std::map<std::string, std::pair<float, float>>& dataset_ranges) {
     // Function to scan the directories root only, root+subdirs
     // Updated to create and initialize the CSV file with the headers 
-    namespace fs = std::filesystem;
+
     std::string extension = (format == "hdf4") ? ".hdf" : ".h5";
     int file_count = 0;
     // bool header_written = false;
@@ -126,6 +133,7 @@ void scan_directory_tree(const std::string& root,
             }
         }
 
+        // Sort the file names
         std::sort(files.begin(), files.end(), [](const auto& a, const auto& b) {
             return a.path().filename() < b.path().filename();
         });
@@ -145,6 +153,7 @@ void scan_directory_tree(const std::string& root,
             if (format == "hdf5") {
                 read_hdf5_info(entry.path().string()); // placeholder
             } else {
+                // Default read HDF4, add a line to the CSV file per file
                 read_hdf4_file_create_csv(entry.path().string(), mask, mask_values, vmin, vmax, csv_file, date_str, dataset_ranges);
             }
         }

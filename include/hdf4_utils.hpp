@@ -1,13 +1,9 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
-#include <iomanip>
-#include <map>
-#include <fstream>
+#include <cstdint>
 #include <string>
-// #include <filesystem>
-#include <sstream>
+#include <vector>
+#include <map>
 
 #include "mfhdf.h"  // HDF4 Scientific Dataset API
 #include "stats_utils.hpp"

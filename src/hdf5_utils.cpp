@@ -1,3 +1,4 @@
+#include <iostream>
 
 #include "hdf5_utils.hpp"
 

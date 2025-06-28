@@ -1,20 +1,18 @@
 #pragma once
 
 #include <string>
-#include <map>
-#include <ctime>
 #include <vector>
-#include <regex>
-#include <iomanip>
-#include <iostream>
+#include <utility>
+#include <map>
 #include <filesystem>
 
 #include "hdf4_utils.hpp"
 #include "hdf5_utils.hpp"
 
-namespace fs = std::filesystem;
+// namespace fs = std::filesystem;
 
-fs::path find_first_valid_file(const std::string& root,
+// fs::path find_first_valid_file(const std::string& root,
+std::filesystem::path find_first_valid_file(const std::string& root,
                                const std::string& extension,
                                const std::vector<std::string>& subdirs);
 
