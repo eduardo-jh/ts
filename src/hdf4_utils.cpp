@@ -249,11 +249,12 @@ void read_hdf4_file_create_csv(const std::string& file_path,
         if (it != dataset_ranges.end()) {
             lower_bound = it->second.first;
             upper_bound = it->second.second;
+            std::cout <<  ", custom range (" << lower_bound << "," << upper_bound << ")";
         } else {
             // Fallback if not found in the map (use default range)
-            std::cout <<  "  Dataset: " << name << " not found, using default range.";
             lower_bound = vmin;
             upper_bound = vmax;
+            std::cout <<  ", using default range (" << lower_bound << "," << upper_bound << ")";
         }
 
         switch (data_type) {
@@ -295,9 +296,9 @@ void read_hdf4_file_create_csv(const std::string& file_path,
 
                         // Compute and display stats
                         compute_stats(data_values, min_val, max_val, mean_val, stddev);
-                        std::cout << " min: " << min_val << ", max: " << max_val
+                        std::cout << "  min: " << min_val << ", max: " << max_val
                                   << ", mean: " << mean_val << ", stddev: " << stddev
-                                  << ", npixels: " << data_values.size() << "\n";
+                                  << ", npixels: " << data_values.size() << "\n\n";
                         
                         // Save to csv file
                         std::ofstream out(csv_file, std::ios::app);  // open in append mode
@@ -355,9 +356,9 @@ void read_hdf4_file_create_csv(const std::string& file_path,
 
                         // Compute and display stats
                         compute_stats(data_values, min_val, max_val, mean_val, stddev);
-                        std::cout << " min: " << min_val << ", max: " << max_val
+                        std::cout << "  min: " << min_val << ", max: " << max_val
                                   << ", mean: " << mean_val << ", stddev: " << stddev
-                                  << ", npixels: " << data_values.size() << "\n";
+                                  << ", npixels: " << data_values.size() << "\n\n";
                         
                         // Save to csv file
                         std::ofstream out(csv_file, std::ios::app);  // open in append mode
@@ -416,9 +417,9 @@ void read_hdf4_file_create_csv(const std::string& file_path,
 
                         // Compute and display stats
                         compute_stats(data_values, min_val, max_val, mean_val, stddev);
-                        std::cout << " min: " << min_val << ", max: " << max_val
+                        std::cout << "  min: " << min_val << ", max: " << max_val
                                   << ", mean: " << mean_val << ", stddev: " << stddev
-                                  << ", npixels: " << data_values.size() << "\n";
+                                  << ", npixels: " << data_values.size() << "\n\n";
                         
                         // Save to csv file
                         std::ofstream out(csv_file, std::ios::app);  // open in append mode
