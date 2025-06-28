@@ -47,11 +47,11 @@ When dataset names include character names use the `\` scape char. In the image 
 
 ![HDF4 dataset name](doc/structure2.png)
 
-This is handled by using the scape char for the blank space, open parenthesis and close parenthesis: `\ `, `\(` and `\)`.
+This is handled by using the scape char for the blank space, open parenthesis and close parenthesis: `\ `, `\(` and `\)`. See examples below.
 
 ## Resulting CSV file
 
-The file will contain headers with the Date in the first column and next the column names will be DATASET_STAT_MASKVALUE, for example dataset `NDVI` for the `average` statistic and the mask value `1` will be: NDVI_avg_1, and so on. the number of columns result from the combination of datasets, statistics and mask values.
+The file will contain headers with the `Date` in the first column and next the column names will be `{DATASET}_{STAT}_{MASKVALUE}`, for example dataset `NDVI` for the `average` statistic and the mask value `1` will be: `NDVI_avg_1`, and so on. The number of columns result from the combination of datasets, statistics and mask values.
 
 ![CSV time series](doc/time_series.png)
 
